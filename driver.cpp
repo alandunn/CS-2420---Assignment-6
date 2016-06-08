@@ -32,11 +32,15 @@ is made only if initial is an even number).
 
 using namespace std;
 
-int goal(int floppyCount, int steps count);
+
+//CONSTANTS
+int NINTEY_ONE = 91;
+
+int goal(int floppyCount, int stepCount);
 
 int main ()
 {
-    int NINTEY_ONE = 91;
+    
     
     int initial;
     
@@ -109,8 +113,9 @@ int main ()
 			else
 			{
 				initial = N;
-
+                int testSteps = 10;
                 
+                goal(initial, testSteps);
 			}
 		}
 
@@ -131,7 +136,7 @@ int goal(int floppyCount, int stepCount)
     // Check if the floppyCount is the answer
     if(floppyCount == NINTEY_ONE)
     {
-        cout << "Congradulations! You reached 91" << endl; 
+        cout << "Congratulations! You reached 91" << endl; 
         return 0;
     }
     // Check that all of the steps have not been used.
@@ -148,19 +153,19 @@ int goal(int floppyCount, int stepCount)
     cout << "Enter 'b' if you would like to cut your floppy count in half." << endl;
     cout << "- ";
     
-    char userChoice = NULL;
+    char userChoice;
     
     cin >> userChoice;
     
     if (userChoice == 'a')
     {
     //(a) - add 53 floppys to the stack, subtract a step since one was used.
-    goal(floppyCount+53, stepCount-1)
+    goal(floppyCount+53, stepCount-1);
     }
     else if (userChoice == 'b')
     {
     //(b) - cut floppyCount in half, subtract a step since one was used.
-    goal(floppyCount/2, stepCount-1)
+    goal(floppyCount/2, stepCount-1);
     }
     
 }
