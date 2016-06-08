@@ -26,13 +26,17 @@ is made only if initial is an even number).
 */
 
 #include <iostream>
+#include <sstream>
+#include <string>
+
 
 using namespace std;
 
+int goal(int floppyCount, int steps count);
+
 int main ()
 {
-    
-    
+    int NINTEY_ONE = 91;
     
     int initial;
     
@@ -45,5 +49,118 @@ int main ()
     
     //
     
-    return 0;
+    
+    //Student Information
+	cout << "Nathanael Meyers and Alan Dunn" << endl;
+	cout << "CS 2420" << endl;
+	cout << "Assignment 6" << endl << endl;
+
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "" << endl;
+	cout << "Valid input consits of a positive whole number such as 4." << endl;
+	cout << "To Exit the program type: \"quit\"" << endl;
+	cout << endl << "===========================================================================" << endl << endl;
+
+	string userInput;
+	double userInputNum;
+	bool keepGoing = true;
+    
+    do
+	{
+		//Ask for input
+		cout << "Please enter the \"N\" value for the board size: ";
+
+		cin >> userInput;
+
+		cout << endl;
+
+		stringstream convert(userInput); // stringstream used for the conversion initialized with the contents of Text
+
+		//Give the value to userInputNum using the characters in the string
+		//If it fails check for "quit" input. Otherwise give error and ask for new input.
+		if (!(convert >> userInputNum))//give the value to Result using the characters in the string
+		{
+			if (userInput == "quit")
+			{
+				keepGoing = false;
+			}
+
+			else
+			{
+				cout << endl << "Error: Invalid input." << endl;
+				cout << "Enter \"quit\" to exit the program." << endl;
+				cout << "Otherwise please enter a positive whole number." << endl << endl;
+				cin.clear();
+			}
+		}
+		// Valid input for N, find the answer to n-queens
+		else
+		{
+			const int N = userInputNum;
+
+            // Check that the number entered is a whole number
+			if (userInputNum != N)
+			{
+				cout << "Error: Number entered is not a whole number." << endl << endl;
+			}
+
+			//Valid input. Code for assignment starts here
+			else
+			{
+				initial = N;
+
+                
+			}
+		}
+
+	} while (keepGoing != false);
+
+	cout << endl << "===========================================================================" << endl;
+	cout << endl << "=========             Thanks for using this program!             ==========" << endl;
+	cout << endl << "===========================================================================" << endl;
+
+
+	// End program
+	system("PAUSE");
+	exit(1);
+}
+
+int goal(int floppyCount, int stepCount)
+{
+    // Check if the floppyCount is the answer
+    if(floppyCount == NINTEY_ONE)
+    {
+        cout << "Congradulations! You reached 91" << endl; 
+        return 0;
+    }
+    // Check that all of the steps have not been used.
+    else if (stepCount <= 0)
+    {
+        cout << "Sorry you have run out of steps." << endl;
+        cout << "Please try again." << endl << endl;
+        return 0;
+    }
+    
+    //Take in user input for the choice
+    cout << "Your current floppy disk count is: " << endl;
+    cout << "Enter 'a' if you would like to add 53 more floppies to your count." << endl;
+    cout << "Enter 'b' if you would like to cut your floppy count in half." << endl;
+    cout << "- ";
+    
+    char userChoice = NULL;
+    
+    cin >> userChoice;
+    
+    if (userChoice == 'a')
+    {
+    //(a) - add 53 floppys to the stack, subtract a step since one was used.
+    goal(floppyCount+53, stepCount-1)
+    }
+    else if (userChoice == 'b')
+    {
+    //(b) - cut floppyCount in half, subtract a step since one was used.
+    goal(floppyCount/2, stepCount-1)
+    }
+    
 }
